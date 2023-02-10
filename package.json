@@ -1,0 +1,37 @@
+{
+    "name": "webhook-executor",
+    "version": "1.0.0",
+    "description": "Listens for webhooks and runs scripts on certain messages.",
+    "main": "src/index.ts",
+    "scripts": {
+        "start": "ts-node src/index.ts",
+        "dev": "ts-node-dev src/index.ts",
+        "build": "tsc",
+        "eslint": "eslint --ext .ts ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Formup/webhook-executor.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Formup/webhook-executor/issues"
+    },
+    "homepage": "https://github.com/Formup/webhook-executor#readme",
+    "dependencies": {
+        "@types/express": "^4.17.17",
+        "dotenv": "^16.0.3",
+        "express": "^4.18.2"
+    },
+    "devDependencies": {
+        "@types/node": "^18.13.0",
+        "@typescript-eslint/eslint-plugin": "^5.51.0",
+        "@typescript-eslint/parser": "^5.51.0",
+        "eslint": "^8.33.0",
+        "ts-node": "^10.9.1",
+        "ts-node-dev": "^2.0.0",
+        "typescript": "^4.9.5"
+    }
+}
