@@ -5,6 +5,10 @@ import { updateQueue } from './queue';
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+app.post('/', (req, res) => {
+    console.log(req.body);
+});
+
 // eslint-disable-next-line
 app.post('/webhooks', async (req, res) => {
     try {
@@ -15,4 +19,7 @@ app.post('/webhooks', async (req, res) => {
     }
 });
 
-app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+function fetch(arg0: string) {
+    throw new Error('Function not implemented.');
+}
