@@ -15,9 +15,8 @@ export const updateQueue = () => {
         queue.push(() => {
             active = true;
 
-            exec(`${__dirname}/scripts/test-echo.sh`, (error, stdout) => {
+            exec(`sh ${__dirname}/scripts/npm-install.sh`, (error, stdout) => {
                 if (error) return reject(error);
-
                 active = false;
                 checkQueue();
                 resolve(stdout);
