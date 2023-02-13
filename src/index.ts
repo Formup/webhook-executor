@@ -21,6 +21,3 @@ app.post('/webhooks', async (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-function fetch(arg0: string) {
-    throw new Error('Function not implemented.');
-}
