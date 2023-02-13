@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 5000;
 
 app.post('/', (req, res) => {
     console.log(req.body);
+    console.log(req.body);
 });
 
 // eslint-disable-next-line
