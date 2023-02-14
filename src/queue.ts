@@ -1,4 +1,5 @@
 import { exec } from 'child_process';
+import config from './config.json';
 
 const queue: Array<() => void> = [];
 let active = false;
@@ -15,7 +16,13 @@ export const updateQueue = () => {
         queue.push(() => {
             active = true;
 
-            exec(`sh ${__dirname}/scripts/npm-install.sh`, (error, stdout) => {
+            let command = `${__dirname}/scripts/${config.script}`;
+
+            if (process.platform !== 'win32') {
+                command = `sh ${__dirname}/scripts/${config.script}`;
+            }
+
+            exec(command, (error, stdout) => {
                 if (error) return reject(error);
                 active = false;
                 checkQueue();
