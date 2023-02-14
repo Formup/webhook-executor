@@ -4,14 +4,14 @@ import config from './config.json';
 const queue: Array<() => void> = [];
 let active = false;
 
-const checkQueue = () => {
+const updateQueue = () => {
     if (!active && queue.length > 0) {
         const next = queue.shift();
         if (next) next();
     }
 };
 
-export const updateQueue = () => {
+export const addToQueue = () => {
     return new Promise((resolve, reject) => {
         queue.push(() => {
             active = true;
@@ -25,11 +25,11 @@ export const updateQueue = () => {
             exec(command, (error, stdout) => {
                 if (error) return reject(error);
                 active = false;
-                checkQueue();
+                updateQueue();
                 resolve(stdout);
             });
         });
 
-        checkQueue();
+        updateQueue();
     });
 };
