@@ -7,7 +7,8 @@
         "start": "ts-node src/index.ts",
         "dev": "ts-node-dev src/index.ts",
         "build": "tsc",
-        "eslint": "eslint --ext .ts ."
+        "eslint": "eslint --ext .ts .",
+        "tsc": "tsc"
     },
     "repository": {
         "type": "git",
