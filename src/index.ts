@@ -5,7 +5,7 @@ import hooksRouter from './routes/hooks';
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-console.log('Testing server2...');
+console.log('Testing server3...');
 
 app.use(express.json());
 app.use('/hooks', hooksRouter);
