@@ -8,6 +8,6 @@ const PORT = process.env.PORT || 5000;
 console.log('Testing server.......');
 
 app.use(express.json());
-app.use('/log-github-webhook', hooksRouter);
+app.use('/hooks', hooksRouter);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
