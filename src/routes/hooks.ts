@@ -5,10 +5,6 @@ import { isValidData, DataTypes } from '../valid';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.send('Hello World!');
-});
-
 // eslint-disable-next-line
 router.post('/', async (req, res) => {
     try {
