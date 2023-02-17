@@ -1,5 +1,4 @@
 import { exec } from 'child_process';
-import config from './config.json';
 
 const queue: Array<() => void> = [];
 let active = false;
@@ -11,15 +10,15 @@ const updateQueue = () => {
     }
 };
 
-export const addToQueue = () => {
+export const addToQueue = (scriptFile: string) => {
     return new Promise((resolve, reject) => {
         queue.push(() => {
             active = true;
 
-            let command = `${__dirname}/scripts/${config.script}`;
+            let command = `${__dirname}/scripts/${scriptFile}`;
 
             if (process.platform !== 'win32') {
-                command = `sh ${__dirname}/scripts/${config.script}`;
+                command = `sh ${__dirname}/scripts/${scriptFile}`;
             }
 
             exec(command, (error, stdout) => {

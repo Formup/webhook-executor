@@ -1,13 +1,10 @@
-export type DataTypes =
-    | { [key: string]: DataTypes }
-    | string
-    | number
-    | boolean;
+type DataTypes = { [key: string]: DataTypes } | string | number | boolean;
 
-export const isValidData = (
+const isValidData = (
     match: Record<string, DataTypes>,
     payload: Record<string, DataTypes>
 ): boolean => {
+    // eslint-disable-next-line
     return Object.entries(match).every(([key, value]) => {
         if (typeof value === 'object') {
             return isValidData(
@@ -18,4 +15,18 @@ export const isValidData = (
 
         return payload[key] === value;
     });
+};
+
+export const getScriptFile = (
+    config: any,
+    payload: Record<string, DataTypes>
+): any => {
+    for (const object of config) {
+        // eslint-disable-next-line
+        const isValid = isValidData(object.match, payload);
+        if (!isValid) return;
+
+        // eslint-disable-next-line
+        return object.script;
+    }
 };
