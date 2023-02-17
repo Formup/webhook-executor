@@ -1,7 +1,7 @@
 import express from 'express';
 import config from '../config.json';
 import { addToQueue } from '../queue';
-import { isValidData, DataTypes } from '../valid';
+import { getScriptFile } from '../valid';
 
 const router = express.Router();
 
@@ -9,48 +9,12 @@ const router = express.Router();
 router.post('/', async (req, res) => {
     try {
         // eslint-disable-next-line
-        const payload: Record<string, DataTypes> = req.body;
-
-        const getMatchData = () => {
-            for (const match of config.matches) {
-                if (match.ref === payload.ref) {
-                    return match;
-                }
-            }
-
-            return 'Match not found';
-        };
-
-        const getScriptFile = () => {
-            return new Promise((resolve, reject) => {
-                for (const script of config.scripts) {
-                    if (script.ref === payload.ref) {
-                        resolve(script.file);
-                        return;
-                    }
-                }
-
-                reject('Script not found');
-            });
-        };
-
-        const matchData: any = getMatchData();
-
-        if (!matchData) {
-            res.status(404).send({ error: 'Match data not found' });
-            return;
-        }
-
+        const payload: any = req.body;
         // eslint-disable-next-line
-        if (!isValidData(matchData, payload)) {
-            res.status(400).send({ error: 'Invalid data' });
-            return;
-        }
-
-        const scriptFile: any = await getScriptFile();
+        const scriptFile = getScriptFile(config, payload);
 
         if (!scriptFile) {
-            res.status(404).send({ error: 'Script file not found' });
+            res.status(404).send({ error: 'Invalid data' });
             return;
         }
 
