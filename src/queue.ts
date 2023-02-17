@@ -21,7 +21,10 @@ export const addToQueue = (scriptFile: string) => {
                 command = `sh ${__dirname}/scripts/${scriptFile}`;
             }
 
+            console.log(command);
+
             exec(command, (error, stdout) => {
+                console.log(error);
                 if (error) return reject(error);
                 active = false;
                 updateQueue();
