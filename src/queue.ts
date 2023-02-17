@@ -24,7 +24,6 @@ export const addToQueue = (scriptFile: string) => {
             console.log(command);
 
             exec(command, (error, stdout) => {
-                console.log(error);
                 if (error) return reject(error);
                 active = false;
                 updateQueue();
