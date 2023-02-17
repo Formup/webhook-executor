@@ -13,6 +13,8 @@ router.post('/', async (req, res) => {
         // eslint-disable-next-line
         const scriptFile = getScriptFile(config, payload);
 
+        console.log(scriptFile);
+
         if (!scriptFile) {
             res.status(404).send({ error: 'Invalid data' });
             return;
