@@ -5,7 +5,6 @@ import { getScriptFile } from '../valid';
 
 const router = express.Router();
 
-// eslint-disable-next-line
 router.post('/', async (req, res) => {
     try {
         // eslint-disable-next-line
