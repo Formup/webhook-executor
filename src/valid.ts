@@ -20,7 +20,7 @@ const isValidData = (
 export const getScriptFile = (
     config: any,
     payload: Record<string, DataTypes>
-): any => {
+): string | undefined => {
     for (const object of config) {
         // eslint-disable-next-line
         const isValid = isValidData(object.match, payload);

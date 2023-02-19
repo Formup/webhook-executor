@@ -18,7 +18,6 @@ router.post('/', async (req, res) => {
             return;
         }
 
-        // eslint-disable-next-line
         const result = await addToQueue(scriptFile);
         res.status(200).send(result);
     } catch (error) {
