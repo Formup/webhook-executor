@@ -6,8 +6,10 @@
     "scripts": {
         "start": "ts-node src/index.ts",
         "dev": "ts-node-dev src/index.ts",
-        "tsc": "tsc",
-        "eslint": "eslint --ext .ts ."
+        "build": "tsc",
+        "clean": "rm -r dist/*",
+        "rebuild": "npm run clean && npm install && npm run build",
+        "lint": "eslint --ext src/*.ts"
     },
     "repository": {
         "type": "git",

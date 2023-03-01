@@ -1,23 +1,28 @@
 import express from 'express';
-import config from '../config.json';
+import config from '../../config.json';
 import { addToQueue } from '../queue';
-import { getScriptFile } from '../valid';
+import { getFilePath } from '../script';
 
 const router = express.Router();
 
 router.post('/', async (req, res) => {
     try {
         // eslint-disable-next-line
-        const payload: any = req.body;
+        const body: any = req.body;
         // eslint-disable-next-line
-        const scriptFile = getScriptFile(config, payload);
+        const filePath = getFilePath(config, body);
 
-        if (!scriptFile) {
+        if (!filePath) {
             res.status(404).send({ error: 'Invalid data' });
             return;
         }
 
-        const result = await addToQueue(scriptFile);
+        // eslint-disable-next-line
+        const startTime = performance.now();
+        const result = await addToQueue(filePath);
+        const endTime = performance.now();
+        console.log(filePath);
+        console.log(`Time: ${endTime - startTime} ms`);
         res.status(200).send(result);
     } catch (error) {
         res.status(500).send(error);

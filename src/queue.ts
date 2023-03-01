@@ -10,15 +10,15 @@ const updateQueue = () => {
     }
 };
 
-export const addToQueue = (scriptFile: string) => {
+export const addToQueue = (filePath: string) => {
     return new Promise((resolve, reject) => {
         queue.push(() => {
             active = true;
 
-            let command = `${__dirname}/scripts/${scriptFile}`;
+            let command = `${filePath}`;
 
             if (process.platform !== 'win32') {
-                command = `sh ${__dirname}/scripts/${scriptFile}`;
+                command = `sh ${filePath}`;
             }
 
             exec(command, (error, stdout) => {
