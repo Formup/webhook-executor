@@ -1,3 +1,4 @@
+import { Response } from 'express';
 import { exec } from 'child_process';
 
 const queue: Array<() => void> = [];
@@ -10,22 +11,29 @@ const updateQueue = () => {
     }
 };
 
-export const addToQueue = (filePath: string) => {
+export const addToQueue = (filePath: string, res: Response) => {
+    let command = filePath;
+
+    if (process.platform !== 'win32') {
+        command = `sh ${filePath}`;
+    }
+
     queue.push(() => {
+        const startTime = performance.now();
         active = true;
 
-        let command = `${filePath}`;
-
-        if (process.platform !== 'win32') {
-            command = `sh ${filePath}`;
-        }
-
         exec(command, (error) => {
-            if (error) console.error(error);
+            if (error) return console.error(error);
             active = false;
+
+            const endTime = performance.now();
+            const runTime = Math.round(endTime - startTime);
+
+            console.log(`Executed file ${filePath} (${runTime}ms)`);
             updateQueue();
         });
     });
 
+    res.status(202).send({ success: 'Added to queue' });
     updateQueue();
 };

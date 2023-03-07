@@ -6,8 +6,6 @@ import { getFilePath } from '../script';
 const router = express.Router();
 
 router.post('/', (req, res) => {
-    const startTime = performance.now();
-
     try {
         // eslint-disable-next-line
         const body = req.body;
@@ -19,12 +17,7 @@ router.post('/', (req, res) => {
             return;
         }
 
-        addToQueue(filePath);
-
-        const endTime = performance.now();
-        const runTime = Math.round(endTime - startTime);
-
-        res.status(202).send(`${filePath} (${runTime}ms)`);
+        addToQueue(filePath, res);
     } catch (error) {
         res.status(500).send(error);
     }
