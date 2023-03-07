@@ -21,8 +21,7 @@ router.post('/', async (req, res) => {
         const startTime = performance.now();
         const result = await addToQueue(filePath);
         const endTime = performance.now();
-        console.log(filePath);
-        console.log(`Time: ${endTime - startTime} ms`);
+        console.log(`${filePath}(${Math.floor(endTime - startTime)} ms)`);
         res.status(200).send(result);
     } catch (error) {
         res.status(500).send(error);
