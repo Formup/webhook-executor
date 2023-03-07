@@ -9,14 +9,16 @@ export const isValidBody = (
     body: Record<string, DataTypes>
 ): boolean => {
     // eslint-disable-next-line
-    return Object.entries(match).every(([key, value]) => {
-        if (typeof value === 'object') {
-            return isValidBody(
-                value as Record<string, DataTypes>,
-                body[key] as Record<string, DataTypes>
-            );
+    return Object.keys(match).every((key) => {
+        const value1 = match[key];
+        const value2 = body[key];
+
+        if (typeof value1 === 'object' && typeof value2 === 'object') {
+            if (!isValidBody(value1, value2)) return false;
+        } else if (value1 !== value2) {
+            return false;
         }
 
-        return body[key] === value;
+        return true;
     });
 };
