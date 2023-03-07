@@ -5,10 +5,12 @@ import { getFilePath } from '../script';
 
 const router = express.Router();
 
-router.post('/', async (req, res) => {
+router.post('/', (req, res) => {
+    const startTime = performance.now();
+
     try {
         // eslint-disable-next-line
-        const body: any = req.body;
+        const body = req.body;
         // eslint-disable-next-line
         const filePath = getFilePath(config, body);
 
@@ -17,12 +19,12 @@ router.post('/', async (req, res) => {
             return;
         }
 
-        // eslint-disable-next-line
-        const startTime = performance.now();
-        const result = await addToQueue(filePath);
+        addToQueue(filePath);
+
         const endTime = performance.now();
-        console.log(`${filePath}(${Math.floor(endTime - startTime)} ms)`);
-        res.status(200).send(result);
+        const runTime = Math.round(endTime - startTime);
+
+        res.status(202).send(`${filePath} (${runTime}ms)`);
     } catch (error) {
         res.status(500).send(error);
     }

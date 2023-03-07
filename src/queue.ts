@@ -11,24 +11,21 @@ const updateQueue = () => {
 };
 
 export const addToQueue = (filePath: string) => {
-    return new Promise((resolve, reject) => {
-        queue.push(() => {
-            active = true;
+    queue.push(() => {
+        active = true;
 
-            let command = `${filePath}`;
+        let command = `${filePath}`;
 
-            if (process.platform !== 'win32') {
-                command = `sh ${filePath}`;
-            }
+        if (process.platform !== 'win32') {
+            command = `sh ${filePath}`;
+        }
 
-            exec(command, (error, stdout) => {
-                if (error) return reject(error);
-                active = false;
-                updateQueue();
-                resolve(stdout);
-            });
+        exec(command, (error) => {
+            if (error) console.error(error);
+            active = false;
+            updateQueue();
         });
-
-        updateQueue();
     });
+
+    updateQueue();
 };
