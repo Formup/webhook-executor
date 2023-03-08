@@ -1,9 +1,13 @@
 import express from 'express';
-import config from '../../config.json';
 import { addToQueue } from '../queue';
 import { getFilePath } from '../script';
+import fs from 'fs';
 
 const router = express.Router();
+
+const argvConfig = process.argv.pop();
+const configFile = fs.readFileSync(`${argvConfig}`);
+const config = JSON.parse(configFile.toString());
 
 router.post('/', (req, res) => {
     try {
