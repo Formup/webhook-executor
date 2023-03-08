@@ -2,7 +2,7 @@
     "name": "webhook-executor",
     "version": "1.0.0",
     "description": "Listens for webhooks and runs scripts on certain messages.",
-    "main": "src/index.ts",
+    "main": "dist/index.js",
     "scripts": {
         "start": "ts-node src/index.ts",
         "dev": "ts-node-dev src/index.ts",
