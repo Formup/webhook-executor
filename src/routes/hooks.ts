@@ -6,7 +6,9 @@ import fs from 'fs';
 const router = express.Router();
 
 const argvConfig = process.argv.pop();
+// eslint-disable-next-line
 const configFile = fs.readFileSync(`${argvConfig}`);
+// eslint-disable-next-line
 const config = JSON.parse(configFile.toString());
 
 router.post('/', (req, res) => {
