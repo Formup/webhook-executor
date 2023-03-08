@@ -17,7 +17,8 @@ router.post('/', (req, res) => {
             return;
         }
 
-        addToQueue(filePath, res);
+        addToQueue(filePath);
+        res.status(202).send({ success: 'Added to queue' });
     } catch (error) {
         res.status(500).send(error);
     }

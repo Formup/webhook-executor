@@ -1,4 +1,3 @@
-import { Response } from 'express';
 import { exec } from 'child_process';
 
 const queue: Array<() => void> = [];
@@ -11,7 +10,7 @@ const updateQueue = () => {
     }
 };
 
-export const addToQueue = (filePath: string, res: Response) => {
+export const addToQueue = (filePath: string) => {
     let command = filePath;
 
     if (process.platform !== 'win32') {
@@ -34,6 +33,5 @@ export const addToQueue = (filePath: string, res: Response) => {
         });
     });
 
-    res.status(202).send({ success: 'Added to queue' });
     updateQueue();
 };
