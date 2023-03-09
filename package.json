@@ -12,6 +12,9 @@
         "rebuild": "npm run clean && npm install && npm run build",
         "lint": "eslint --ext src/*.ts"
     },
+    "files": [
+        "dist"
+    ],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Formup/webhook-executor.git"
