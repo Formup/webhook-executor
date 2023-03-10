@@ -1,5 +1,5 @@
 {
-    "name": "webhook-executor",
+    "name": "@komuhomes/webhook-executor",
     "version": "1.0.0",
     "description": "Listens for webhooks and runs scripts on certain messages.",
     "main": "dist/index.js",
