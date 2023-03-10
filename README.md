@@ -9,7 +9,7 @@ Loops through the config file and if any **"match"** object matches to your webh
 ## Installation
 
 ```
-npm install -g webhook-executor
+npm install -g @komuhomes/webhook-executor
 ```
 
 ## Configuration
