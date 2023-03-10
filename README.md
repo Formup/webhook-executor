@@ -4,7 +4,7 @@ Listens for webhooks & runs scripts on certain messages.<br>
 
 ## Description
 
-Loops through the config file and checks if "match" content matches to your webhook data it will run the specific script.
+Loops through the config file and checks if **"match"** content matches to your webhook data it will run the specific script.
 
 ## Installation
 
@@ -16,13 +16,14 @@ npm install -g webhook-executor
 
 ### Config file
 
-You must have config file. Config file can be located where ever you want & can be named anything but must be type of JSON.
+**Config file is required.**<br>
+Config file can be located where ever you want & can be named anything but must be type of JSON.
 <br>
 <br>
-You must have "match" and "path" as same as below but you can customize match object to work with your data. You can have multiple matches to run different scripts. "match" is the object that will be matched to your webhook data.
+You must have **"match"** and **"path"** as same as below but you can customize match object to work with your data. You can have multiple matches to run different scripts. **"match"** is the object that will be matched to your webhook data.
 <br>
 <br>
-Your config syntax should look something like below.
+Your config syntax should look something like as the one below.
 
 ### Example of config file
 
@@ -68,14 +69,14 @@ Your config syntax should look something like below.
 
 ### Scripts
 
-Scripts can be located anywhere but they must be type of .sh or .bat. Provide path of your script file example below.<br>
+Scripts can be located anywhere but they must be type of .sh or .bat. Specify the script path as in the example below.<br>
 `users/user/webhook-executor/scripts/script.sh`<br>
 
 ## Usage
 
 ### Run
 
-You must provide path of the config file example below.<br>
+You must specify the config file path as in the example below.<br>
 `users/user/webhook-executor/config.json`<br>
 
 ```
